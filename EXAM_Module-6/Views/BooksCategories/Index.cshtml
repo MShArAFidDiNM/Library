@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EXAM_Module_6.Models.BooksCategory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>BooksCategory</h1>
+<form asp-controller="BooksCategories" asp-action="Index">
+    <p>
+        Search name: <input type="text" name="SearchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<p>
+    <a type="button" class="btn btn-primary btn-sm" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sortorder="@ViewData["IdSort"]">
+                    @Html.DisplayName("Id") <i class="fa fa-sort"></i>
+                </a>
+            </th>
+            <th>
+                <a asp-route-sortorder="@ViewData["NameSort"]">
+                    @Html.DisplayName("Name") <i class="fa fa-sort"></i>
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td> 
+                <a asp-action="Details" asp-route-id="@item.Id" >
+                        @Html.DisplayFor(modelItem => item.Id)
+                </a>
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
